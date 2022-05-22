@@ -4,7 +4,7 @@ import SearchView from "./SearchView";
 import useFetch from "../hooks/useSearch";
 
 const Search = () => {
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
   const [searchParams] = useSearchParams();
   const searchValue = searchParams.get("search");
   const { data } = useFetch(
@@ -16,8 +16,11 @@ const Search = () => {
   function handleNextPage() {
     setPage((prevValue) => prevValue + 1);
   }
+
   function handlePrevPage() {
-    setPage((prevValue) => prevValue - 1);
+    if (page !== 0) {
+      setPage((prevValue) => prevValue - 1);
+    }
   }
 
   if (!data) return <h1>LOADING...</h1>;
