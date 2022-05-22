@@ -1,34 +1,28 @@
 import React, { useRef } from "react";
-import { FaSearch } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import NavbarView from "./NavbarView";
 
 const Navbar = () => {
   const searchRef = useRef();
+  const navigate = useNavigate();
+
+  function handleSearch() {
+    const refSearch = searchRef.current.value;
+    navigate(`/items?search=${refSearch}`);
+  }
+
+  function handleKeyDown(event) {
+    if (event.key === "Enter") {
+      handleSearch();
+    }
+  }
 
   return (
-    <header className="bg-mercadolibre">
-      <div className="container mx-auto flex items-center">
-        <img
-          src="/img/mercadolibre-curso.png"
-          alt="logo mercadolibre"
-          width={40}
-          height={40}
-          className="mr-3"
-        />
-        <div className="w-full flex py-[9px] ">
-          <input
-            type="text"
-            id="search"
-            name="search"
-            placeholder="Nunca dejes de buscar"
-            ref={searchRef}
-            className="w-full bg-white py-1 px-3 rounded-sm h-8 border-none shadow-sm shadow-gray-300"
-          />
-          <button className="bg-gray-200 px-3 shadow-sm shadow-gray-300">
-            <FaSearch />
-          </button>
-        </div>
-      </div>
-    </header>
+    <NavbarView
+      handleKeyDown={handleKeyDown}
+      searchRef={searchRef}
+      handleSearch={handleSearch}
+    />
   );
 };
 
