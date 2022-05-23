@@ -1,4 +1,5 @@
 import React from "react";
+import { BuyButton } from "../components/Button";
 
 const ProductView = ({ data, categories, description }) => {
   return (
@@ -39,12 +40,7 @@ const ProductView = ({ data, categories, description }) => {
             </p>
             <h2 className="font-bold">{data?.title}</h2>
             <h2 className="text-3xl  pt-5 pb-8">$ {data?.price}</h2>
-            <button
-              type="text"
-              className="bg-blue-500 text-white py-2 rounded-sm shadow shadow-blue-800 w-full"
-            >
-              Comprar
-            </button>
+            <BuyButton className={"py-1 text-lg"} />
           </div>
         </div>
       </div>
