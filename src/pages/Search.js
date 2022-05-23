@@ -30,6 +30,7 @@ const Search = () => {
       data={data}
       handleNextPage={handleNextPage}
       handlePrevPage={handlePrevPage}
+      page={page}
     />
   );
 };
